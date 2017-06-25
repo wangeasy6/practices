@@ -1,0 +1,84 @@
+Unix Installation
+We will use as an example the installation for GNU/Linux. The installation for other unix
+systems is similar. There are several references to ARCH below; these refer to the computer
+architecture that Scheme is compiled for, either ‘i386’ or ‘x86-64’.
+MIT/GNU Scheme is distributed as a compressed ‘tar’ file. The tar file contains both
+source and binary files; the binary files are pre-compiled Scheme code for a particular
+computer architecture.
+In order to install the software, it’s necessary to configure and compile the C code, then
+to install the combined C and Scheme binaries. This is done in the following steps:
+0. Get installation package.Download from http://www.gnu.org/software/mit-scheme/
+1. Unpack the tar file, mit-scheme-VERSION-ARCH.tar.gz, into the directory
+mit-scheme-VERSION. For example,
+tar xzf mit-scheme-VERSION-i386.tar.gz
+will create a new directory mit-scheme-VERSION.
+2. Move into the new directory:
+cd mit-scheme-VERSION/src
+3. Configure the software:
+./configure
+By default, the software will be installed in /usr/local, in the subdirectories bin
+and lib. If you want it installed somewhere else, for example /opt/mit-scheme, pass
+the --prefix option to the configure script, as in ./configure --prefix=/opt/mit-
+scheme.
+The configure script accepts all the normal arguments for such scripts, and additionally
+accepts some that are specific to MIT/GNU Scheme. To see all the possible arguments
+and their meanings, run the command ./configure --help.
+
+{
+Error:
+easy-w@ubuntu:~/software/mit-scheme-9.2/src$ ./configure 
+
+checking for m4... no
+configure: error: m4 not found
+configure: error: ./configure failed for microcode
+
+dealwith:
+WEBSITE:http://blog.csdn.net/ldl22847/article/details/8575140
+CONTENTS:
+error when update autoconf2.64
+ 
+configure: error: no acceptable m4 could be found in $PATH
+ 
+解决办法：
+ 
+wget -O m4-1.4.9.tar.gz http://ftp.gnu.org/gnu/m4/m4-1.4.9.tar.gz
+tar -zvxf m4-1.4.9.tar.gz
+cd m4-1.4.9
+./configure
+make
+make install
+}
+
+4. Build the software:
+make compile-microcode
+5. Install the software:
+make install
+Depending on configuration options and file-system permissions, you may need super-
+user privileges to do the installation step.
+After you have installed Scheme, you can install a few dynamically loadable options.
+These are configured, built and installed in the customary way. To install the GDBM2 and
+MHASH options:
+(cd gdbm && ./configure && make && make install)
+(cd mhash && ./configure && make && make install)
+4 MIT/GNU Scheme 9.4
+The make install command will attempt to create a subdirectory in the first directory
+on the host Scheme’s library path. If that directory is not writable by you, super-user
+privileges may be required.
+You can put a writable directory at the front of your host Scheme’s library path by
+setting the MITSCHEME_LIBRARY_PATH environment variable
+export MITSCHEME_LIBRARY_PATH=\
+~/mit-scheme-plugins:/usr/local/lib/mit-scheme-x86-64
+or including the --library option on the command line.
+mit-scheme --library ~/mit-scheme-plugins:/usr/local/lib/mit-scheme-svm
+A few of the included options wrap popular Unix libraries. To compile and link them
+you often need “developers’ packages” installed first. The following table lists the included
+options and an example developers’ package name (and shared library name). The package
+names can vary quite a bit among Unix distributions; the library names less so. Please see
+the README file in each option’s subdirectory for more information.
+BLOWFISH libssl-dev (-lcrypto)
+GDBM2 libgdbm-dev (-lgdbm)
+MD5 libssl-dev (-lcrypto)
+MHASH libmhash-dev (-lmhash)
+After installing the software and any options, you can delete the unpacked directory:
+cd ../..
+rm -rf mit-scheme-VERSION
