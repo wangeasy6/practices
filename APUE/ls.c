@@ -1,3 +1,8 @@
+/*
+*	程序功能：用于列出目录中的所有文件
+*		输入：可用路径
+*		输出：路径下的所有文件
+*/
 #include <sys/types.h>
 #include <dirent.h>
 #include <stdio.h>

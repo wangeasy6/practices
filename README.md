@@ -9,3 +9,6 @@
 ### SICP
 * 英文书名：Structure and Interpretation of Computer Programs
 * 中文书名：计算机程序的构造和解释 原书第二版.机械工业出版社.2004.2(2016.10重印)
+### 常用命令
+* gcc -o app xxx.c
+* mit-scheme --load xxx.scm
