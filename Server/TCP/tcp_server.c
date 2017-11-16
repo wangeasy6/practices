@@ -18,9 +18,9 @@ void main(int argc,char **argv)
     socklen_t peerlen;
     char buf[BUF_SIZE];
 
-    if(argc != 3)
+    if(argc < 3)
     {
-        printf("Usage : %s <ip> <port>",argv[0]);
+        printf("Usage : %s <ip> <port>\n",argv[0]);
         exit(-1);
     }
 
@@ -34,7 +34,7 @@ void main(int argc,char **argv)
 
     bzero(&servaddr,sizeof(servaddr));
     servaddr.sin_family = AF_INET;
-    servaddr.sin_port = htons(atoi(argv[2]));        //将16位主机字符顺序转化成网络字符顺序
+    servaddr.sin_port = htons(atoi(argv[2]));
     servaddr.sin_addr.s_addr = inet_addr(argv[1]);
 
     // printf("%d\n%d\n%d\n",servaddr.sin_family,servaddr.sin_port,servaddr.sin_addr.s_addr);
