@@ -16,9 +16,13 @@
 ### /Server
 * 分别用TCP和UDP实现的服务器和客户端代码
 
+### /Python
+* python 练习
+
 ### /Others
 * 其它的一些小练习
 
 ### 常用命令
-* gcc -o app xxx.c
+* gcc -o app \*.c
 * mit-scheme --load xxx.scm / 1 ]=> (load "xxx.scm)
+* python \*.py
