@@ -1,5 +1,6 @@
 # practices
 练习册，书中的或其它练习
+
 ### /APUE
 * 英文书名：Advanced Programming in the UNIX Environment 2rd Edition
 * 中文书名：Unix 高级环境编程(第二版)
@@ -14,6 +15,9 @@
 
 ### /Server
 * 分别用TCP和UDP实现的服务器和客户端代码
+
+### /Others
+* 其它的一些小练习
 
 ### 常用命令
 * gcc -o app xxx.c
